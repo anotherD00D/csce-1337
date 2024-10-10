@@ -1,25 +1,4 @@
-#include <iostream>
-#include <array>
-
-using namespace std;
-
-class DynamicArray {
-    public:
-        DynamicArray();
-        DynamicArray(int &rows, int &cols);
-
-        int const GetArrayElement(int &i, int &j);
-        void const PrintAllElements();
-
-        void SetArrayElement();
-        void DeleteArrayInstance();
-
-    private:
-        int rows;
-        int cols;
-        int value = 0;
-        int** arr;
-};
+#include "dynamicArray.h"
 
 DynamicArray::DynamicArray() {
     rows = 1;
@@ -48,10 +27,13 @@ int const DynamicArray::GetArrayElement(int &i, int &j) {
     else {
         outputValue = arr[i][j];
     }
+    cout << "Returning the value of the element at position '" << i << "' and '" << j << "' in the dynamic array: ";
     return outputValue;
 }
 
 void const DynamicArray::PrintAllElements() {
+    cout << "Printing the all elements inside the array." << endl;
+
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             cout << arr[i][j] << " ";
@@ -70,30 +52,11 @@ void DynamicArray::SetArrayElement() {
 }
 
 void DynamicArray::DeleteArrayInstance() {
+
+    cout << "Deleting dynamic array....";
     for (int i = 0; i < rows; ++i) {
         delete[] arr[i];
     }
 
     delete[] arr;
-}
-
-int main() {
-    int rows;
-    int cols;
-
-    int pos_i = 1;
-    int pos_j = 1;
-
-    cin >> rows;
-    cin >> cols;
-
-    DynamicArray DynArr1(rows, cols);
-    DynArr1.SetArrayElement();
-
-    DynArr1.PrintAllElements();
-    cout << DynArr1.GetArrayElement(pos_i, pos_j) << endl;
-
-    DynArr1.DeleteArrayInstance();
-
-    return 0;
 }
