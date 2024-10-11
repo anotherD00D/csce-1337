@@ -4,6 +4,7 @@
 int main() {
     string AccountName;
     double inputBalance;
+
     Account acct1;
     Account acct2;
     vector<Account> VecAcount =  {acct1, acct2};
@@ -18,7 +19,8 @@ int main() {
     
     for (Account& obj : VecAcount) {
         cout << "Please enter your desired name of the account: " << endl;
-        cin >> AccountName;   
+        getline(cin, AccountName);
+        cin.ignore(1000, '\n'); 
         obj.SetAccountName(AccountName);
 
         cout << "Please deposit a balance to the account:" << endl;
