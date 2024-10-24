@@ -1,24 +1,43 @@
 #include <iostream>
-#include <string>
-#include <iomanip>
-
-#ifndef TESTHEAD_H
-#define TESTHEAD_H
 
 using namespace std;
-
-class Account {
-
-public:
-    Account();
-    Account(string AccountName);
-
-    //functions
-    string GetAccountName();
-    void SetAccountName(string AccountName);
-
-private:
-    string AccountName;
+class Node {
+    public:
+        int data;
+        Node* next;
+        Node(int intValue) : data(intValue), next(nullptr) {}
 };
 
-#endif
+class LinkedList {
+    private:
+        Node* head;
+    public:
+        LinkedList() : head (nullptr) {}
+
+    //insert at front
+    void InsertAtFront(int intValue) {
+        Node* newNode = new Node(intValue);
+        newNode->next = head;
+        head = newNode;
+
+    }
+    void InsertAtEnd(int intValue) {
+        Node* newNode = new Node(intValue);
+        if(!head) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while(temp-> next) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+    void InsertAfter(int intValue){
+        if(!prevNode) {
+            return;
+        }
+        Node* newNode = new Node(intValue);
+        newNode->next = prevNode->next;
+    }
+};
